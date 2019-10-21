@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mockbin:
+    image: ball6847/mockbin:latest
+    depends_on:
+      - redis
+    ports:
+      - 8080:8080
+    command: mockbin -r redis://redis:6379
+  redis:
+    image: redis:3-alpine
+    entrypoint: redis-server --appendonly yes --protected-mode no
